@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/96a55066-3b91-44d6-8e42-8bc7e542d198)
+
 # ONE-MILLION-LUXURY-APP
 El propósito del repositorio es evidenciar los conocimientos como especialista Backend en la construcción de API REST con .NET C# para la compañía - Million Realty LLC.
 
