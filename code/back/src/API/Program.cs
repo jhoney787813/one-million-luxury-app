@@ -31,7 +31,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API.Backend.Coink.App v1"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BFF.Backend.Million.App v1"));
 
 app.UseAuthorization();
 

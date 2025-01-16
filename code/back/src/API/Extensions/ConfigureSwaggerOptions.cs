@@ -35,9 +35,9 @@ namespace API.Extensions
         {
             var info = new OpenApiInfo()
             {
-                Title = "API Backend Coink APP",
+                Title = "BFF Backend Million App",
                 Version = description.ApiVersion.ToString(),
-                Description = "This API allows queries and management of Users Data",
+                Description = "This API allows the query and management of Properties and Owners, designing a backend architecture for frontend (BFF). \r\nIt allows to create scalable applications to be used in most web or mobile applications.",
             };
 
             if (description.IsDeprecated)

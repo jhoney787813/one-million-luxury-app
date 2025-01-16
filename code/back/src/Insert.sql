@@ -1,46 +1,31 @@
-INSERT INTO Country (name, prefix)
-VALUES
-('United States', 'US'),
-('Canada', 'CA'),
-('Mexico', 'MX'),
-('Colombia', 'CO');
+-- Insert data into "Image"
+INSERT INTO public."Image" ("FileImage", "Enabled", "Created_at") VALUES
+('house1.jpg', true, now()),
+('house2.jpg', true, now()),
+('house3.jpg', false, now()),
+('owner1.jpg', true, now()),
+('owner2.jpg', true, now());
 
-INSERT INTO State (name, prefix, country_id)
-VALUES
-('California', 'CA', (SELECT id FROM Country WHERE prefix = 'US')),
-('Texas', 'TX', (SELECT id FROM Country WHERE prefix = 'US')),
-('Ontario', 'ON', (SELECT id FROM Country WHERE prefix = 'CA')),
-('Quebec', 'QC', (SELECT id FROM Country WHERE prefix = 'CA')),
-('Nuevo León', 'NL', (SELECT id FROM Country WHERE prefix = 'MX')),
-('Jalisco', 'JA', (SELECT id FROM Country WHERE prefix = 'MX')),
-('Bogotá', 'BO', (SELECT id FROM Country WHERE prefix = 'CO')),
-('Antioquia', 'ANT', (SELECT id FROM Country WHERE prefix = 'CO'));
+-- Insert data into "Owner"
+INSERT INTO public."Owner" ("name", "address", "photo", "created_at", "birthday") VALUES
+('John Doe', '123 Main St, Springfield', 'owner1.jpg', now(), '1985-06-15'),
+('Jane Smith', '456 Elm St, Shelbyville', 'owner2.jpg', now(), '1990-03-22'),
+('Carlos Lopez', '789 Oak St, Capital City', NULL, now(), '1980-11-05');
 
+-- Insert data into "Property"
+INSERT INTO public."Property" ("Name", "Address", "Price", "Created_at", "CodeInternal", "Year", "IdOwner") VALUES
+('Beautiful Bungalow', '321 Pine St, Springfield', 250000, now(), 'BB2025', 2020, 1),
+('Modern Apartment', '654 Maple St, Shelbyville', 350000, now(), 'MA2026', 2021, 2),
+('Cozy Cottage', '987 Willow St, Capital City', 150000, now(), 'CC2027', 2019, 3);
 
-INSERT INTO City (name, prefix, state_id)
-VALUES
-('Los Angeles', 'LA', (SELECT id FROM State WHERE prefix = 'CA')),
-('San Francisco', 'SF', (SELECT id FROM State WHERE prefix = 'CA')),
-('Houston', 'HT', (SELECT id FROM State WHERE prefix = 'TX')),
-('Dallas', 'DL', (SELECT id FROM State WHERE prefix = 'ON')),
-('Toronto', 'TO', (SELECT id FROM State WHERE prefix = 'ON')),
-('Montreal', 'MT', (SELECT id FROM State WHERE prefix = 'QC')),
-('Monterrey', 'MTY', (SELECT id FROM State WHERE prefix = 'NL')),
-('Guadalajara', 'GDL', (SELECT id FROM State WHERE prefix = 'JA')),
-('Bogotá D.C.', 'BOG', (SELECT id FROM State WHERE prefix = 'BO')),
-('Usaquén', 'USA', (SELECT id FROM State WHERE prefix = 'BO')),
-('Chapinero', 'CHP', (SELECT id FROM State WHERE prefix = 'BO')),
-('Medellín', 'MED', (SELECT id FROM State WHERE prefix = 'ANT')),
-('Envigado', 'ENV', (SELECT id FROM State WHERE prefix = 'ANT')),
-('Bello', 'BEL', (SELECT id FROM State WHERE prefix = 'ANT'));
+-- Insert data into "PropertyImage"
+INSERT INTO public."PropertyImage" ("IdProperty", "Created_at") VALUES
+(1, now()),
+(2, now()),
+(3, now());
 
-
-
-INSERT INTO UserData (card_id,name, phone, address, city_id)
-VALUES
-('123','Juan Pérez', '5551234', 'Calle 123, Bogotá',
-    (SELECT id FROM City WHERE prefix = 'BOG')
-),
-('345','Laura Gómez', '5555678', 'Calle 456, Medellín',
-    (SELECT id FROM City WHERE prefix = 'MED')
-);
+-- Insert data into "PropertyTrace"
+INSERT INTO public."PropertyTrace" ("DateSale", "Name", "Value", "Tax", "IdProperty", "Created_at") VALUES
+('2024-01-10', 'Initial Sale', 250000, 0.05, 1, now()),
+('2024-01-12', 'Second Sale', 350000, 0.07, 2, now()),
+('2024-01-15', 'First Sale', 150000, 0.04, 3, now());

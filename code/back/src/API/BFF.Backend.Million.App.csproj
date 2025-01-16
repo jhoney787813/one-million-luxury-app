@@ -7,7 +7,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <BaseOutputPath></BaseOutputPath>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>API.Backend.Coink.App.xml</DocumentationFile>
+    <DocumentationFile>BFF.Backend.Million.App.xml</DocumentationFile>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
