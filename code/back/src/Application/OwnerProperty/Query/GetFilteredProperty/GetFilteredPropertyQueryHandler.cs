@@ -3,6 +3,7 @@ using Application.Users.Command.Create;
 using Domain.Entities;
 using Domain.Interfaces.UseCases;
 using MediatR;
+using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.OwnerProperty.GetFilteredProperty
@@ -19,11 +20,11 @@ namespace Application.OwnerProperty.GetFilteredProperty
         {
              var result = await _getFilteredPropertyUseCase.Execute(request);
              var response = MapToResponse(result);
-
-            if (response is not null && response.Count>0)
+            StringBuilder errors; 
+            if (ModelIsValid(request, out errors))
                 return Result<IEnumerable<GetFilteredPropertyQueryResponse>>.Success(response);
             else
-                return Result<IEnumerable<GetFilteredPropertyQueryResponse>>.Failure("");
+                return Result<IEnumerable<GetFilteredPropertyQueryResponse>>.Failure(errors.ToString());
         }
 
         private List<GetFilteredPropertyQueryResponse> MapToResponse(IEnumerable<PropertyFilterResultEntity> result)
@@ -42,6 +43,39 @@ namespace Application.OwnerProperty.GetFilteredProperty
         {
             return new GetFilteredPropertyQueryResponse(propertyResult.IdOwner, propertyResult.OwnerName, propertyResult.PropertyName, propertyResult.PropertyAddress, propertyResult.Price, propertyResult.ImageUrl);
         }
+
+        #region Private Methods
+        private bool ModelIsValid(PropertyFilterRequestEntity propertyFilterRequest, out StringBuilder errors)
+        {
+            errors = new StringBuilder();
+
+            if (!(propertyFilterRequest is not null))
+            {
+                errors.Append("The property filter request cannot be null.\n");
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(propertyFilterRequest.Name) && propertyFilterRequest.Name.Length > 300)
+                errors.Append("The property name cannot exceed 3000 characters.\n");
+
+            if (!string.IsNullOrEmpty(propertyFilterRequest.Address) && propertyFilterRequest.Address.Length > 400)
+                errors.Append("The property address cannot exceed 400 characters.\n");
+
+            if (propertyFilterRequest.MinPrice.HasValue && propertyFilterRequest.MinPrice.Value < 0)
+                errors.Append("The minimum price must be a positive value.\n");
+
+            if (propertyFilterRequest.MaxPrice.HasValue && propertyFilterRequest.MaxPrice.Value < 0)
+                errors.Append("The maximum price must be a positive value.\n");
+
+            if (propertyFilterRequest.MinPrice.HasValue && propertyFilterRequest.MaxPrice.HasValue &&
+                propertyFilterRequest.MinPrice.Value > propertyFilterRequest.MaxPrice.Value)
+            {
+                errors.Append("The minimum price cannot be greater than the maximum price.\n");
+            }
+
+            return errors.Length == 0;
+        }
+        #endregion
     }
 }
 

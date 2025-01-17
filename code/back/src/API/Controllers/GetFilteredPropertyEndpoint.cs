@@ -35,7 +35,6 @@ public class GetFilteredPropertyEndpoint : ControllerBase
         return Ok(result);
     }
 
-
     /// <summary>
     /// Permite consultar el top{n} información de las propiedades de los usuarios ordenado por el mas reciente.
     /// </summary>
