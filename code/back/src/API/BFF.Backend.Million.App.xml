@@ -4,12 +4,6 @@
         <name>BFF.Backend.Million.App</name>
     </assembly>
     <members>
-        <member name="M:API.Controllers.CreateUserEndpoint.CreateUser(Application.Users.Command.Create.CreateUserCommand)">
-            <summary>
-            Permite el registro de un nuevo usuario
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:API.Controllers.GetFilteredPropertyEndpoint.GetById(Application.OwnerProperty.GetFilteredProperty.GetFilteredPropertyQuery)">
             <summary>
             Permite consultar la información de las propiedades de los usuarios por filtros como el nombre, la direccion y el rango de precio

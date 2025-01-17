@@ -26,10 +26,20 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new ApiVersion(1, 0);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost", policy =>
+    {
+        policy.WithOrigins("*")  // Permitir solicitudes desde el frontend
+              .AllowAnyHeader()                      // Permitir cualquier encabezado
+              .AllowAnyMethod();                     // Permitir cualquier método (GET, POST, etc.)
+    });
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
+app.UseCors("AllowLocalhost");
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BFF.Backend.Million.App v1"));
 

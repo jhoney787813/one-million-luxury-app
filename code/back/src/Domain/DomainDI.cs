@@ -8,7 +8,6 @@ public static class DomainDI
 {
     public static IServiceCollection AddDomainLayer(this IServiceCollection services)
     {
-        services.AddTransient<ICreateUserUseCase, CreateUserUseCase>();
         services.AddTransient<IGetFilteredPropertyUseCase, GetFilteredPropertyUseCase>();
         services.AddTransient<IGetTopPropertyUseCase, GetTopPropertyUseCase>();
         return services;

@@ -1,5 +1,4 @@
 ﻿using Application.Commons;
-using Application.Users.Command.Create;
 using Domain.Entities;
 using Domain.Interfaces.UseCases;
 using MediatR;

@@ -1,4 +1,4 @@
-﻿using Application.Users.Command.Create;
+﻿using Application.OwnerProperty.GetFilteredProperty;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -11,7 +11,7 @@ public static class ApplicationDI
     {
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(GetTopPropertyQuery).Assembly);
 
         });
         return services;

@@ -1,10 +1,10 @@
 -- Insert data into "Image"
 INSERT INTO public."Image" ("FileImage", "Enabled", "Created_at") VALUES
-('house1.jpg', true, now()),
-('house2.jpg', true, now()),
-('house3.jpg', false, now()),
-('owner1.jpg', true, now()),
-('owner2.jpg', true, now());
+('https://photos.zillowstatic.com/fp/c203408f4a7299b981129e46430b1e42-cc_ft_768.webp', true, now()),
+('https://pic.le-cdn.com/thumbs/520x390/08/1/properties/Property-06308b4c34745cad51cc9ebd32c72d2d-130873476.jpg', true, now()),
+('https://photos.zillowstatic.com/fp/556eb4f3406bf1c9db73fbacf3c32cfc-cc_ft_768.webp', false, now()),
+('https://pic.le-cdn.com/thumbs/1024x768/08/12/properties/Property-b4bf55bfc6e6537158741ef4d2ec1307-130865193.jpg', true, now()),
+('https://photos.zillowstatic.com/fp/556eb4f3406bf1c9db73fbacf3c32cfc-cc_ft_768.webp', true, now());
 
 -- Insert data into "Owner"
 INSERT INTO public."Owner" ("Name", "Address", "Photo", "Created_at", "Birthday") VALUES

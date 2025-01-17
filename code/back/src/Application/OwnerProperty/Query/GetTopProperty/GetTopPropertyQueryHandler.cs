@@ -1,8 +1,8 @@
 ﻿using Application.Commons;
-using Application.Users.Command.Create;
 using Domain.Entities;
 using Domain.Interfaces.UseCases;
 using MediatR;
+using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.OwnerProperty.GetFilteredProperty
@@ -17,13 +17,14 @@ namespace Application.OwnerProperty.GetFilteredProperty
 
         public async Task<Result<IEnumerable<GetTopPropertyQueryResponse>>> Handle(GetTopPropertyQuery request, CancellationToken cancellationToken)
         {
-             var result = await _getTopPropertyUseCase.Execute(request.Top);
-             var response = MapToResponse(result);
-
-            if (response is not null && response.Count>0)
+            StringBuilder errors;
+            if (ModelIsValid(request, out errors))
+            {
+                var result = await _getTopPropertyUseCase.Execute(request.Top);
+                var response = MapToResponse(result);
                 return Result<IEnumerable<GetTopPropertyQueryResponse>>.Success(response);
-            else
-                return Result<IEnumerable<GetTopPropertyQueryResponse>>.Failure("");
+            }
+            return Result<IEnumerable<GetTopPropertyQueryResponse>>.Failure(errors.ToString());
         }
 
         private List<GetTopPropertyQueryResponse> MapToResponse(IEnumerable<PropertyFilterResultEntity> result)
@@ -42,6 +43,24 @@ namespace Application.OwnerProperty.GetFilteredProperty
         {
             return new GetTopPropertyQueryResponse(propertyResult.IdOwner, propertyResult.OwnerName, propertyResult.PropertyName, propertyResult.PropertyAddress, propertyResult.Price, propertyResult.ImageUrl);
         }
+
+        #region Private method
+        private bool ModelIsValid(GetTopPropertyQuery propertyFilterRequest, out StringBuilder errors)
+        {
+            errors = new StringBuilder();
+
+            if (!(propertyFilterRequest is not null))
+            {
+                errors.Append("The property filter request cannot be null.\n");
+                return false;
+            }
+
+            if (propertyFilterRequest.Top < 0)
+                errors.Append("The Top must be a positive value.\n");
+
+            return errors.Length == 0;
+        }
+        #endregion
     }
 }
 

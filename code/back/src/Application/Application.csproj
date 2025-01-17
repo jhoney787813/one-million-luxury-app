@@ -17,10 +17,6 @@
     <None Remove="Vehicles\GetByLicensePlate\" />
     <None Remove="Vehicles\Delete\" />
     <None Remove="Users\" />
-    <None Remove="Users\Create\" />
-    <None Remove="Users\Delete\" />
-    <None Remove="Users\GetById\" />
-    <None Remove="Users\GetAll\" />
     <None Remove="Commons\" />
   </ItemGroup>
   <ItemGroup>

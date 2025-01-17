@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories
                         INNER JOIN ""Owner"" o ON p.""IdOwner"" = o.""IdOwner""
                         LEFT JOIN ""PropertyImage"" pi ON p.""IdProperty"" = pi.""IdProperty""
                         LEFT JOIN ""Image"" img ON pi.""IdPropertyImage"" = img.""IdImage""
-                        WHERE 1=1 ";
+                        WHERE ";
         }
 
         private string BuildBaseQueryTOP()
@@ -83,19 +83,19 @@ namespace Infrastructure.Repositories
                         LIMIT @Top;";
         }
 
-        private DynamicParameters BuildQueryParametersFilter(PropertyFilterRequestEntity filter, ref string query)
+        private DynamicParameters BuildQueryParametersALLFilter(PropertyFilterRequestEntity filter, ref string query)
         {
             var parameters = new DynamicParameters();
 
             if (!string.IsNullOrEmpty(filter.Name))
             {
-                query += " AND p.\"Name\" ILIKE @Name";
+                query += " AND p.\"Name\" LIKE @Name";
                 parameters.Add("Name", $"%{filter.Name}%");
             }
 
             if (!string.IsNullOrEmpty(filter.Address))
             {
-                query += " AND p.\"Address\" ILIKE @Address";
+                query += " AND p.\"Address\" LIKE @Address";
                 parameters.Add("Address", $"%{filter.Address}%");
             }
 
@@ -108,13 +108,41 @@ namespace Infrastructure.Repositories
             if (filter.MaxPrice.HasValue)
             {
                 query += " AND p.\"Price\" <= @MaxPrice";
-                parameters.Add("MaxPrice", filter.MaxPrice.Value);
+                parameters.Add("MaxPrice", filter.MinPrice.Value);
             }
 
             query += " ORDER BY p.\"Created_at\" DESC";
 
             return parameters;
         }
+
+
+        private DynamicParameters BuildQueryParametersFilter(PropertyFilterRequestEntity filter, ref string query)
+        {
+            var parameters = new DynamicParameters();
+            bool isFirstFilter = true;
+
+            void AddFilter(string column, string condition, object value, ref string query, ref bool isFirstFilter)
+            {
+                if (value != null) 
+                {
+                    if (!isFirstFilter) query += " AND "; 
+                    query += $" p.\"{column}\" {condition} @{column}"; 
+                    parameters.Add(column, value); 
+                    isFirstFilter = false; 
+                }
+            }
+
+            AddFilter("Name", "LIKE", !string.IsNullOrEmpty(filter.Name) ?$"%{filter.Name}%":null, ref query, ref isFirstFilter);
+            AddFilter("Address", "ILIKE", !string.IsNullOrEmpty(filter.Address) ?$"%{filter.Address}%":null, ref query, ref isFirstFilter);
+            AddFilter("Price", ">=", filter.MinPrice.HasValue ? filter.MaxPrice : null, ref query, ref isFirstFilter);
+            AddFilter("Price", "<=", filter.MaxPrice.HasValue ? filter.MaxPrice:null, ref query, ref isFirstFilter);
+ 
+            query += " ORDER BY p.\"Created_at\" DESC";
+
+            return parameters;
+        }
+
 
         private async Task<IEnumerable<PropertyFilterResultModel>> ExecuteQueryAsync(string query, DynamicParameters parameters)
         {
