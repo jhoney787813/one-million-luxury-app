@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces.UseCases
 {
-    public interface IGetFilteredPropertyUseCase
+    public interface IGetTopPropertyUseCase
     {
-        public Task<IEnumerable<PropertyFilterResultEntity>> Execute(PropertyFilterRequestEntity filter);
+        public Task<IEnumerable<PropertyFilterResultEntity>> Execute(int top);
 
     }
 }

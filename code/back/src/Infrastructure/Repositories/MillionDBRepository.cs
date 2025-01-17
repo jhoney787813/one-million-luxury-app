@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             try
             {
                 var query = BuildBaseQuery();
-                var parameters = BuildQueryParameters(filter, ref query);
+                var parameters = BuildQueryParametersFilter(filter, ref query);
                 var result = await ExecuteQueryAsync(query, parameters);
                 return PropertyFilterResultMapper.MapModelToEntity(result);
             }
@@ -32,6 +32,22 @@ namespace Infrastructure.Repositories
             {
 
                 throw new InvalidOperationException("Error al obtener las propiedades filtradas.", ex);
+            }
+        }
+
+        public async Task<IEnumerable<PropertyFilterResultEntity>> GetTopPropertiesAsync(int top)
+        {
+            try
+            {
+                var query = BuildBaseQueryTOP();
+                var parameters = new DynamicParameters();
+                parameters.Add("@Top", top);
+                var result = await ExecuteQueryAsync(query, parameters);
+                return PropertyFilterResultMapper.MapModelToEntity(result);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error al obtener el top {" + top + "} las propiedades.", ex);
             }
         }
 
@@ -51,7 +67,23 @@ namespace Infrastructure.Repositories
                         WHERE 1=1 ";
         }
 
-        private DynamicParameters BuildQueryParameters(PropertyFilterRequestEntity filter, ref string query)
+        private string BuildBaseQueryTOP()
+        {
+            return @" SELECT o.""IdOwner"",
+                            o.""Name"" AS OwnerName,
+                            p.""Name"" AS PropertyName,
+                            p.""Address"" AS PropertyAddress,
+                            p.""Price"",
+                            img.""FileImage"" AS ImageUrl
+                        FROM ""Property"" p
+                        INNER JOIN ""Owner"" o ON p.""IdOwner"" = o.""IdOwner""
+                        LEFT JOIN ""PropertyImage"" pi ON p.""IdProperty"" = pi.""IdProperty""
+                        LEFT JOIN ""Image"" img ON pi.""IdPropertyImage"" = img.""IdImage""
+                        ORDER BY p.""IdProperty"" DESC
+                        LIMIT @Top;";
+        }
+
+        private DynamicParameters BuildQueryParametersFilter(PropertyFilterRequestEntity filter, ref string query)
         {
             var parameters = new DynamicParameters();
 

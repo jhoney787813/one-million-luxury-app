@@ -7,7 +7,7 @@ INSERT INTO public."Image" ("FileImage", "Enabled", "Created_at") VALUES
 ('owner2.jpg', true, now());
 
 -- Insert data into "Owner"
-INSERT INTO public."Owner" ("name", "address", "photo", "created_at", "birthday") VALUES
+INSERT INTO public."Owner" ("Name", "Address", "Photo", "Created_at", "Birthday") VALUES
 ('John Doe', '123 Main St, Springfield', 'owner1.jpg', now(), '1985-06-15'),
 ('Jane Smith', '456 Elm St, Shelbyville', 'owner2.jpg', now(), '1990-03-22'),
 ('Carlos Lopez', '789 Oak St, Capital City', NULL, now(), '1980-11-05');
@@ -29,3 +29,23 @@ INSERT INTO public."PropertyTrace" ("DateSale", "Name", "Value", "Tax", "IdPrope
 ('2024-01-10', 'Initial Sale', 250000, 0.05, 1, now()),
 ('2024-01-12', 'Second Sale', 350000, 0.07, 2, now()),
 ('2024-01-15', 'First Sale', 150000, 0.04, 3, now());
+
+
+
+
+INSERT INTO public."Owner"  ( "Name", "Address", "Photo", "Created_at", "Birthday") 
+VALUES ('Juan Pérez', 'Medellín, Colombia', 'photo1.jpg', now(), '1985-04-15');
+
+
+--select * from Public."Owner" 
+-- Insertar en Property
+INSERT INTO "Property" ("IdProperty", "Name", "Address", "Price", "Created_at", "CodeInternal", "Year", "IdOwner") 
+VALUES (4, 'Casa de Ensueño', 'Medellín, Colombia', 300000, now(), 'CDE123', 2020, 1);
+--select * from  Public."Property"
+-- Insertar en Image
+INSERT INTO "Image" ( "FileImage", "Enabled", "Created_at") 
+VALUES ( 'house_image1.jpg', true, now());
+
+-- Insertar en PropertyImage
+INSERT INTO "PropertyImage" ("IdPropertyImage", "IdProperty", "Created_at") 
+VALUES (4, 4, now());

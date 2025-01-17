@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Domain.UseCases
 {
-    public class GetFilteredPropertyUseCase : IGetFilteredPropertyUseCase
+    public class GetTopPropertyUseCase : IGetTopPropertyUseCase
     {
         private readonly IMillionDBRepository _millionDBRepository;
-        public GetFilteredPropertyUseCase(IMillionDBRepository millionDBRepository)
+        public GetTopPropertyUseCase(IMillionDBRepository millionDBRepository)
         {
                 _millionDBRepository = millionDBRepository;
         }
-        public async Task<IEnumerable<PropertyFilterResultEntity>> Execute(PropertyFilterRequestEntity filter)
+        public async Task<IEnumerable<PropertyFilterResultEntity>> Execute(int top)
         {
-            var result = await _millionDBRepository.GetFilteredPropertiesAsync(filter);
+            var result = await _millionDBRepository.GetTopPropertiesAsync(top);
             return result;
         }
     }

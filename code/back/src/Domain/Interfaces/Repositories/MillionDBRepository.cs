@@ -10,6 +10,7 @@ namespace Domain.Interfaces.Repositories
     public interface IMillionDBRepository
     {
         public Task<IEnumerable<PropertyFilterResultEntity>> GetFilteredPropertiesAsync(PropertyFilterRequestEntity filter);
+        public Task<IEnumerable<PropertyFilterResultEntity>> GetTopPropertiesAsync(int top);
 
     }
 }

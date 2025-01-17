@@ -12,6 +12,8 @@ public static class DomainDI
         services.AddTransient<IDeleteUserUseCase, DeleteUserUseCase>();
         services.AddTransient<IGetAllUserUseCase, GetAllUsersUseCase>();
         services.AddTransient<IGetUserByIdUseCase, GetUserByIdUseCase>();
+        services.AddTransient<IGetFilteredPropertyUseCase, GetFilteredPropertyUseCase>();
+        services.AddTransient<IGetTopPropertyUseCase, GetTopPropertyUseCase>();
         return services;
     }
 }

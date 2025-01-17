@@ -1,4 +1,5 @@
-﻿using Application.Users.Query.GetAll;
+﻿using Application.OwnerProperty.GetFilteredProperty;
+using Application.Users.Query.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ public class GetAllUsersEndpoint : ControllerBase
     /// Permite consultar la lista de todos los usuarios existentes
     /// </summary>
     /// <returns></returns>
-    [ProducesResponseType(typeof(GetAllUsersQueryResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetFilteredPropertyQueryResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
