@@ -12,8 +12,6 @@ public static class InfrastructureDI
     {
         services.AddScoped<IDbConnection>(sp =>
            new NpgsqlConnection(configuration.GetConnectionString("SupabaseConnection")));
-        services.AddScoped<IUsersRepository, UsersRepository>();
-        services.AddScoped<ICityRepository, CityRepository>();
         services.AddScoped<IMillionDBRepository,MillionDBRepository>();  
         services.AddMemoryCache();
         return services;

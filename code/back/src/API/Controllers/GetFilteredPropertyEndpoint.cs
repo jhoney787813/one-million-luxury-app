@@ -1,7 +1,5 @@
 ﻿
 using Application.OwnerProperty.GetFilteredProperty;
-using Application.Users.Query.GetAll;
-using Application.Users.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

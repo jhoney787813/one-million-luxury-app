@@ -48,7 +48,7 @@ namespace API.Extensions
             get
             {
                 var basePath = AppContext.BaseDirectory;
-                var fileName = typeof(GetByIdEndpoint).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                var fileName = typeof(GetFilteredPropertyEndpoint).GetTypeInfo().Assembly.GetName().Name + ".xml";
 
                 return Path.Combine(basePath, fileName);
             }
