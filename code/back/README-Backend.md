@@ -165,9 +165,124 @@ Este esquema describe los detalles de un problema o error ocurrido en la API, y 
 - **detail**: Descripción detallada del error.
 - **instance**: Instancia del error.
 
-## Conclusión
 
+
+# Distribución de archivos en solución de proyecto "BFF.Backend.Million.App"
+
+![image](https://github.com/user-attachments/assets/cb7c438c-1f2e-4963-8110-f08f5cd05c56)
+
+
+# Estructura de Paquetes en la Construcción de APIs con CQRS y Vertical Slice
+
+La distribución física de paquetes que mencionas en la construcción de APIs sigue un enfoque modular y bien organizado para favorecer la aplicación de principios SOLID, así como el patrón CQRS (Command Query Responsibility Segregation) y Vertical Slice, lo cual mejora la seguridad y la modularidad de la aplicación. A continuación, se explica cómo cada parte contribuye a estos objetivos:
+
+## 1. Proyecto `BFF.Backend.Million.App` (API) y `BFF.Backend.Million.App.csproj` (controladores, endpoints y Swagger)
+- Estos proyectos contienen la lógica de exposición de la API y la interfaz con el cliente. Siguiendo el patrón **MVC** (Model-View-Controller), los controladores sirven como intermediarios entre la capa de presentación (clientes) y la lógica de negocio.
+- Al mantener los controladores separados de la lógica de negocio y la infraestructura, la aplicación queda más limpia y flexible. La documentación con **Swagger** proporciona visibilidad clara para los consumidores de la API.
+
+ ![image](https://github.com/user-attachments/assets/ec84db56-4857-439c-8461-916b3c9a60a5)
+
+
+## 2. Proyecto de clases `Application` (comunicación entre controladores y capa de dominio)
+- Aquí se encuentran las clases encargadas de la **orquestación de comandos y consultas** dentro del patrón CQRS. Esta capa traduce las solicitudes de los controladores en acciones que deben realizarse en el dominio, y maneja el flujo de la aplicación sin incluir la lógica de negocio directa.
+- **CQRS** separa las operaciones de lectura y escritura en distintos modelos, permitiendo una gestión más eficiente y escalable de los datos.
+- Esto favorece principios como el de **responsabilidad única** y **abierto/cerrado**, ya que cada módulo solo tiene una razón para cambiar.
+- 
+![image](https://github.com/user-attachments/assets/04a70337-9aa4-4e71-b539-4f74226cc057)
+
+
+
+## Requisito de Negocio de validar los datos de entrada
+
+> Los servicios expuestos deberán validar que los datos ingresados como parámetros sean válidos. 
+
+Para esto se promone que los datos de los modelos son validados sobre la capa de aplicación antes de llegar al dominio para realizar las operaciones de inserción o actualización. Esto garantiza que los datos de entrada sean los esperados antes de ejecutar las acciones sobre la base de datos.
+
+Este enfoque asegura que se eviten errores innecesarios y que los datos ingresados sean correctos antes de afectar el sistema, preservando la integridad de la base de datos y las operaciones de negocio.
+
+
+## Explicación de la Clase `GetFilteredPropertyQueryHandler`
+
+La clase `CreateUserCommandHandler` es responsable de manejar la creación de un nuevo usuario a través del comando `CreateUserCommand`. Su función principal es validar los datos antes de invocar la lógica de dominio para ejecutar la operación.
+![image](https://github.com/user-attachments/assets/9f9448ef-cc19-49a8-b4a2-b16331ef9b01)
+![image](https://github.com/user-attachments/assets/06890890-ad78-4c04-831e-c6d79967ac11)
+
+
+# Resumen de la Explicación de las Validaciones
+
+## Proceso de Validación
+La función `ModelIsValid` se encarga de validar las propiedades del query GetFilteredPropertyQuery -> `PropertyFilterRequestEntity` antes de procesar los datos. Las validaciones aplicadas son:
+
+Todas estas validaciones se hacen tieniendo en cuenta el modelo de base de daos previamente creado para dar consistencia a los datos: respentando tipos de datos y longitud de los campos.
+
+### Validación de la Solicitud de Filtros de Propiedades
+
+A continuación se detallan las reglas y justificaciones de las validaciones implementadas para la solicitud de filtros de propiedades.
+
+- **Name**:
+  - **Regla**: Si se proporciona, no debe exceder los 300 caracteres.
+  - **Justificación**: Se limita el tamaño del nombre de la propiedad para evitar problemas de almacenamiento y asegurar que la base de datos mantenga un formato consistente y manejable.
+
+- **Address**:
+  - **Regla**: Si se proporciona, no debe exceder los 400 caracteres.
+  - **Justificación**: Se establece una longitud máxima para la dirección con el fin de evitar sobrecargar la base de datos y garantizar que la información se mantenga clara y accesible.
+
+- **MinPrice**:
+  - **Regla**: Si se proporciona, debe ser un valor positivo.
+  - **Justificación**: Es importante que el precio mínimo sea positivo, ya que un valor negativo no tendría sentido en el contexto de propiedades y podría generar errores en el sistema.
+
+- **MaxPrice**:
+  - **Regla**: Si se proporciona, debe ser un valor positivo.
+  - **Justificación**: Similar al precio mínimo, el precio máximo debe ser positivo para asegurar que las consultas sobre las propiedades sean válidas.
+
+- **MinPrice y MaxPrice**:
+  - **Regla**: Si se proporcionan ambos, el valor de MinPrice no puede ser mayor que el valor de MaxPrice.
+  - **Justificación**: Es necesario garantizar que el filtro de precios sea lógico, es decir, el precio mínimo no puede ser mayor que el máximo, ya que esto generaría una inconsistencia en los resultados de la búsqueda de propiedades.
+
+### Mensajes de Error
+
+Si alguna de las validaciones anteriores no se cumple, se generan mensajes de error detallados, como:
+
+- "The property filter request cannot be null."
+- "The property name cannot exceed 3000 characters."
+- "The property address cannot exceed 400 characters."
+- "The minimum price must be a positive value."
+- "The maximum price must be a positive value."
+- "The minimum price cannot be greater than the maximum price."
+
+Estos errores se agregan a un objeto `StringBuilder` para ser enviados como una respuesta de error en caso de que la solicitud no pase las validaciones, garantizando así que los filtros aplicados sean válidos y consistentes.
+
+### Respuesta
+
+La función devuelve `true` si no hay errores, lo que indica que la solicitud de filtro es válida. Si hay errores, devuelve `false` y se agregan mensajes de error descriptivos.
+
+
+Clase **CreateUserCommandHandler**
+
+<img width="708" alt="image" src="https://github.com/user-attachments/assets/c051a978-511f-41a7-9790-3529760134b2">
+
+<img width="458" alt="image" src="https://github.com/user-attachments/assets/be6e2abe-774f-4418-8004-b2a7c4f69c21">
+
+
+## 3. Proyecto de clases `Domain` (definiciones e implementaciones de reglas de negocio)
+- Aquí es donde se define la lógica de negocio principal, separada de los detalles de implementación. Esto incluye **interfaces** que definen contratos de comportamiento y reglas de negocio independientes de cómo se implementan.
+- **Vertical Slice** es clave aquí, ya que segmenta la lógica por funcionalidad (cada "slice" es una característica completa) para nuestro caso se segmenta por "casos de uso" ys que nuestro desarrollo se orienta al dominio del negocio, lo que facilita que cada parte de la aplicación crezca de manera autónoma, permitiendo iteraciones ágiles y un código más fácil de mantener.
+- Este enfoque modular ayuda a reducir el acoplamiento y promueve **polimorfismo** y **inversión de dependencias**, dos principios de SOLID.
+- 
+![image](https://github.com/user-attachments/assets/68047791-4aac-4164-ada9-0e027a37d21d)
+
+## 4. Proyecto de clases `Infrastructure` (implementación de repositorios)
+- Esta capa se encarga de la persistencia de datos y la comunicación con otros servicios externos (como bases de datos o APIs externas). La **implementación de repositorios** está alineada con las interfaces definidas en el dominio.
+- **Inversión de dependencias** (uno de los principios de SOLID) se aplica aquí porque la capa de aplicación y dominio dependen de **abstracciones** y no de implementaciones concretas. Esto permite cambiar la infraestructura (como el tipo de base de datos) sin afectar el dominio o la lógica de negocio.
+  
+![image](https://github.com/user-attachments/assets/837f737e-ba64-4827-a932-bda49e327f5e)
+
+
+
+# Conclusión
 La API **BFF Backend Million App** está diseñada para optimizar el acceso y gestión de propiedades, permitiendo consultas eficientes y adaptadas a las necesidades de las plataformas web y móviles. Con el uso de filtros y la posibilidad de consultar las propiedades más recientes, esta solución proporciona una manera efectiva de interactuar con los datos de propiedades y propietarios a través de un backend flexible y escalable.
+
+
 
 
 
