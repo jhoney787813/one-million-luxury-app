@@ -8,21 +8,23 @@ Este repositorio contiene el desarrollo de una implementación **backend y front
 El desarrollo sigue el patrón de diseño CQRS junto con MediatR, como parte de la implementación de una solución de software para la compañía, catalogada dentro de una arquitectura limpia (Clean Architecture) y orientada a microservicios.
 
 
-<a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_FULLSTACK%20_%20MILLION.pdf" target="_blank">
-->Ver Indicaciones de la prueba PDF-EN</a>
+<a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_FULLSTACK%20_%20MILLION.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-EN</a>
 
-<a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_SR_DEVELOPER_FULLSTACK.pdf" target="_blank">
-->Ver Indicaciones de la prueba PDF-ESP</a>
+<a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_SR_DEVELOPER_FULLSTACK.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-ESP</a>
 
 ## Distribución del repositorio 
 
 ### Base de datos
 
-En esta sección encontrarás todos los scripts necesarios, tanto de DDL (Data Definition Language) como de DML (Data Manipulation Language), para garantizar el correcto funcionamiento y la ejecución de los requisitos solicitados a nivel de base de datos. [-> Ver Contenido de BD](https://github.com/jhoney787813/one-million-luxury-app/blob/main/Contenido-BD.md)
+En esta sección encontrarás todos los scripts necesarios, tanto de DDL (Data Definition Language) como de DML (Data Manipulation Language), para garantizar el correcto funcionamiento y la ejecución de los requisitos solicitados a nivel de base de datos. 
+
+[-> Ver Contenido de BD](https://github.com/jhoney787813/one-million-luxury-app/blob/main/Contenido-BD.md)
 
 ### Código fuente BFF (API)
 
-En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  [-> Ver Código Backend](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/back/README-Backend.md)
+En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  
+
+[-> Ver Código Backend](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/back/README-Backend.md)
 
 ### Código fuente UI (Front)
 
