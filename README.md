@@ -8,7 +8,7 @@ Este repositorio contiene el desarrollo de una implementación **backend y front
 El desarrollo sigue el patrón de diseño CQRS junto con MediatR, como parte de la implementación de una solución de software para la compañía, catalogada dentro de una arquitectura limpia (Clean Architecture) y orientada a microservicios.
 
 
-<a href=" https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_FULLSTACK%20_%20MILLION.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-EN</a>
+<a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_FULLSTACK%20_%20MILLION.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-EN</a>
 
 <a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_SR_DEVELOPER_FULLSTACK.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-ESP</a>
 
