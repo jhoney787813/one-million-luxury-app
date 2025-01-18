@@ -9,6 +9,7 @@ El desarrollo sigue el patrón de diseño CQRS junto con MediatR, como parte de 
 
 
 <a href=" https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_FULLSTACK%20_%20MILLION.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-EN</a>
+
 <a href="https://github.com/jhoney787813/one-million-luxury-app/blob/main/TECHNICAL_TEST_SR_DEVELOPER_FULLSTACK.pdf" target="_blank">->Ver Indicaciones de la prueba PDF-ESP</a>
 
 ## Distribución del repositorio 
