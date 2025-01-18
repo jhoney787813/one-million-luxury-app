@@ -20,10 +20,13 @@ En esta sección encontrarás todos los scripts necesarios, tanto de DDL (Data D
 
 ### Código fuente BFF (API)
 
-En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  [-> Ver Código](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/back/README-Backend.md)
+En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  [-> Ver Código Backend](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/back/README-Backend.md)
 
 ### Código fuente UI (Front)
 
+En esta sección encontrarás la distribución lógica y física de la solución de software, incluyendo su arquitectura y la creación del proyecto frontend en React. El desarrollo se ha realizado utilizando Vite como herramienta de construcción y servidor de desarrollo, lo que permite una experiencia rápida y optimizada en el proceso de desarrollo. Vite proporciona tiempos de recarga rápidos, lo cual es ideal para proyectos modernos, y se ha utilizado junto con otras herramientas como Material UI para la creación de una interfaz de usuario dinámica y responsiva.
+
+[-> Ver Código Frontend](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/front/README-Frontend.md)
 
 #### Nota: Como parte de los requisitos, se ha solicitado utilizar MongoDB, sin embargo por la propuesta de modelo realacional se utiliza un servicio en la nube llamado (SUPABASE) que nos permite trabajar con base de datos realacionales (PostgreSQL) y no realacioneales como motor de base de datos. 
 
