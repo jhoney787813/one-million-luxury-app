@@ -271,13 +271,63 @@ Todas estas validaciones se hacen tieniendo en cuenta el modelo de base de daos 
 - 
 - **Vertical Slice** es clave aquí, ya que segmenta la lógica por funcionalidad (cada "slice" es una característica completa) para nuestro caso se segmenta por "casos de uso" ys que nuestro desarrollo se orienta al dominio del negocio, lo que facilita que cada parte de la aplicación crezca de manera autónoma, permitiendo iteraciones ágiles y un código más fácil de mantener.
 - Este enfoque modular ayuda a reducir el acoplamiento y promueve **polimorfismo** y **inversión de dependencias**, dos principios de SOLID.
-
+![image](https://github.com/user-attachments/assets/45ff2488-7564-45f0-8a30-abacfe9f4494)
 
 ## 4. Proyecto de clases `Infrastructure` (implementación de repositorios)
 - Esta capa se encarga de la persistencia de datos y la comunicación con otros servicios externos (como bases de datos o APIs externas). La **implementación de repositorios** está alineada con las interfaces definidas en el dominio.
 - **Inversión de dependencias** (uno de los principios de SOLID) se aplica aquí porque la capa de aplicación y dominio dependen de **abstracciones** y no de implementaciones concretas. Esto permite cambiar la infraestructura (como el tipo de base de datos) sin afectar el dominio o la lógica de negocio.
   
-![image](https://github.com/user-attachments/assets/45ff2488-7564-45f0-8a30-abacfe9f4494)
+![image](https://github.com/user-attachments/assets/84f0c9cc-38e3-469b-9738-dbd5349316db)
+
+Para nuestra implementación tenemos el acceso a datos de nuestro repositorio de BD, el cual se ha definido en la capa de *Dominio* el respectivo contrato, lo que nos permite en esta campa crerar una implementación sin acoplar en tipo de BD o repositorio a acceder, para nuestro caso se ha implementado *"MillionDBRepository"* el cual hace la implementación para consumir la BD en *postgreSQL* que esta habilitada por nuestro servicios de *"SUPABASE"* plataform.
+
+# MillionDBRepository - Repositorio de Propiedades
+
+## Descripción
+La clase `MillionDBRepository` es un repositorio encargado de gestionar las consultas relacionadas con propiedades en una base de datos utilizando Dapper. Permite obtener propiedades filtradas y el top de propiedades más relevantes según un parámetro de cantidad.
+
+### Métodos
+
+#### 1. `GetFilteredPropertiesAsync`
+Obtiene propiedades filtradas según los parámetros de nombre, dirección, precio mínimo y máximo.
+
+- **Parámetros**:
+  - `filter`: Objeto de tipo `PropertyFilterRequestEntity` que contiene los filtros.
+- **Retorno**: 
+  - Devuelve una lista de objetos `PropertyFilterResultEntity`.
+
+#### 2. `GetTopPropertiesAsync`
+Obtiene el top de propiedades más relevantes.
+
+- **Parámetros**:
+  - `top`: Número de propiedades a obtener.
+- **Retorno**: 
+  - Devuelve una lista de objetos `PropertyFilterResultEntity`.
+
+### Métodos Auxiliares
+
+#### 1. `BuildBaseQuery`
+Construye la consulta base para obtener propiedades con filtros aplicados.
+
+#### 2. `BuildBaseQueryTOP`
+Construye la consulta base para obtener el top de propiedades.
+
+#### 3. `BuildQueryParametersFilter`
+Construye los parámetros dinámicos de la consulta SQL, aplicando los filtros según el objeto `PropertyFilterRequestEntity`.
+
+#### 4. `ExecuteQueryAsync`
+Ejecuta la consulta SQL asíncrona utilizando Dapper y retorna los resultados mapeados.
+
+## Excepciones
+- Si ocurre un error durante la ejecución de las consultas, se lanza una excepción `InvalidOperationException` con un mensaje detallado.
+
+## Interfaz IMillionDBRepository
+La clase implementa la interfaz `IMillionDBRepository`, que declara los métodos `GetFilteredPropertiesAsync` y `GetTopPropertiesAsync` para obtener propiedades con filtros y el top de propiedades.
+
+![image](https://github.com/user-attachments/assets/13f09335-60c2-4e47-9cd0-14f77ffb00dc)
+![image](https://github.com/user-attachments/assets/27190eb8-d38c-4b5e-8c2e-863e2dce0471)
+![image](https://github.com/user-attachments/assets/99f21f04-c487-41c1-bef7-e21b36d32c1b)
+
 
 
 # Conclusión
