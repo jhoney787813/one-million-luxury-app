@@ -154,3 +154,61 @@ IdProperty: Llave foránea que referencia la propiedad.
 La tabla "*Property*" tiene una relación con la tabla "*Owner*" a través de la columna "*IdOwner*".
 La tabla "*PropertyImage*" está relacionada con "*Image*" y *Property* mediante las claves foráneas "*IdPropertyImage*" e "*IdProperty*".
 La tabla "*PropertyTrace*" está relacionada con "*Property*" a través de la columna "*IdProperty*".
+
+
+
+# Documentación de Datos de Ejemplo
+
+## Insertar Datos en la Tabla `Image`
+
+```sql
+INSERT INTO public."Image" ("FileImage", "Enabled", "Created_at") VALUES
+('https://photos.zillowstatic.com/fp/c203408f4a7299b981129e46430b1e42-cc_ft_768.webp', true, now()),
+('https://pic.le-cdn.com/thumbs/520x390/08/1/properties/Property-06308b4c34745cad51cc9ebd32c72d2d-130873476.jpg', true, now()),
+('https://photos.zillowstatic.com/fp/556eb4f3406bf1c9db73fbacf3c32cfc-cc_ft_768.webp', false, now());
+```
+
+##  Insertar Datos en la Tabla Owner
+```sql
+INSERT INTO public."Owner" ("Name", "Address", "Photo", "Created_at", "Birthday") VALUES
+('John Doe', '123 Main St, Springfield', 'owner1.jpg', now(), '1985-06-15'),
+('Jane Smith', '456 Elm St, Shelbyville', 'owner2.jpg', now(), '1990-03-22'),
+('Carlos Lopez', '789 Oak St, Capital City', NULL, now(), '1980-11-05');
+```
+## Insertar Datos en la Tabla Property
+
+```sql
+INSERT INTO public."Property" ("Name", "Address", "Price", "Created_at", "CodeInternal", "Year", "IdOwner") VALUES
+('Beautiful Bungalow', '321 Pine St, Springfield', 250000, now(), 'BB2025', 2020, 1),
+('Modern Apartment', '654 Maple St, Shelbyville', 350000, now(), 'MA2026', 2021, 2),
+('Cozy Cottage', '987 Willow St, Capital City', 150000, now(), 'CC2027', 2019, 3);
+```
+## Insertar Datos en la Tabla PropertyTrace
+
+```sql
+INSERT INTO public."PropertyTrace" ("DateSale", "Name", "Value", "Tax", "IdProperty", "Created_at") VALUES
+('2024-01-10', 'Initial Sale', 250000, 0.05, 1, now()),
+('2024-01-12', 'Second Sale', 350000, 0.07, 2, now()),
+('2024-01-15', 'First Sale', 150000, 0.04, 3, now());
+```
+
+
+##  Requerimientos a Evaluar
+
+La base de datos fue diseñada para gestionar y visualizar información de propiedades inmobiliarias de manera eficiente. El sistema proporciona una interfaz web moderna , permitiendo a los usuarios consultar y administrar datos de propiedades almacenadas en la base de datos. Esta solución se implemento para una empresa del sector inmobiliario que requiere centralizar la consulta de datos relacionados con propiedades, propietarios y otros atributos asociados, como la ubicación, el precio y las imágenes de las propiedades.
+
+### Cumplimiento de los principios ACID:
+
+#### Atomicidad: 
+Las operaciones son atómicas, garantizando que las transacciones se realicen de forma completa o no se realicen en absoluto. Si un paso de la operación falla, toda la transacción se revierte, asegurando la coherencia de los datos.
+
+#### Consistencia: 
+
+La base de datos siempre permanecerá en un estado consistente, con restricciones de claves foráneas y validaciones de datos que aseguran la integridad de la información en todo momento.
+
+#### Durabilidad: 
+Una vez que una transacción se confirma, sus efectos son permanentes, incluso en caso de fallos del sistema.
+Aislamiento: Cada transacción se realiza de forma aislada, evitando interferencias de otras operaciones concurrentes, garantizando que las lecturas y escrituras sean coherentes.
+
+#### Escalabilidad y Mantenimiento
+El diseño propuesto permite la expansión del sistema sin afectar las funcionalidades existentes. Agregar nuevos países, estados o ciudades no impactará en las relaciones ya definidas entre las tablas. Además, las consultas complejas, como la búsqueda de propiedades con filtros dinámicos, serán eficientes gracias a la estructura de las tablas y el uso adecuado de índices.
