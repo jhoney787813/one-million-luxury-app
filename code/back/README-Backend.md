@@ -203,7 +203,7 @@ Este enfoque asegura que se eviten errores innecesarios y que los datos ingresad
 
 ## Explicación de la Clase `GetFilteredPropertyQueryHandler`
 
-La clase `CreateUserCommandHandler` es responsable de manejar la creación de un nuevo usuario a través del comando `CreateUserCommand`. Su función principal es validar los datos antes de invocar la lógica de dominio para ejecutar la operación.
+La clase `CreateUserCommandHandler` es responsable de manejar la consulta de propiedades y propietario a través del query  `GetFilteredPropertyQuery`. Su función principal es validar los datos antes de invocar la lógica de dominio para ejecutar la operación.
 ![image](https://github.com/user-attachments/assets/9f9448ef-cc19-49a8-b4a2-b16331ef9b01)
 ![image](https://github.com/user-attachments/assets/06890890-ad78-4c04-831e-c6d79967ac11)
 
@@ -257,26 +257,27 @@ Estos errores se agregan a un objeto `StringBuilder` para ser enviados como una 
 La función devuelve `true` si no hay errores, lo que indica que la solicitud de filtro es válida. Si hay errores, devuelve `false` y se agregan mensajes de error descriptivos.
 
 
-Clase **CreateUserCommandHandler**
+Clase **GetTopPropertyQueryHandler**
+La función `ModelIsValid` se encarga de validar el parametro "top" del query GetTopPropertyQuery -> `GetTopPropertyQuery` antes de procesar los datos. Las validaciones aplicadas son:
 
-<img width="708" alt="image" src="https://github.com/user-attachments/assets/c051a978-511f-41a7-9790-3529760134b2">
+Todas estas validaciones se hacen tieniendo en cuenta el modelo de base de daos previamente creado para dar consistencia a los datos: respentando tipos de datos y que sean valores validos.
 
-<img width="458" alt="image" src="https://github.com/user-attachments/assets/be6e2abe-774f-4418-8004-b2a7c4f69c21">
+![image](https://github.com/user-attachments/assets/9637a813-b0f3-4f42-a018-fd7318d55b57)
+![image](https://github.com/user-attachments/assets/f77adff3-17b9-4629-a79a-68d053ae4c4f)
 
 
 ## 3. Proyecto de clases `Domain` (definiciones e implementaciones de reglas de negocio)
 - Aquí es donde se define la lógica de negocio principal, separada de los detalles de implementación. Esto incluye **interfaces** que definen contratos de comportamiento y reglas de negocio independientes de cómo se implementan.
+- 
 - **Vertical Slice** es clave aquí, ya que segmenta la lógica por funcionalidad (cada "slice" es una característica completa) para nuestro caso se segmenta por "casos de uso" ys que nuestro desarrollo se orienta al dominio del negocio, lo que facilita que cada parte de la aplicación crezca de manera autónoma, permitiendo iteraciones ágiles y un código más fácil de mantener.
 - Este enfoque modular ayuda a reducir el acoplamiento y promueve **polimorfismo** y **inversión de dependencias**, dos principios de SOLID.
-- 
-![image](https://github.com/user-attachments/assets/68047791-4aac-4164-ada9-0e027a37d21d)
+
 
 ## 4. Proyecto de clases `Infrastructure` (implementación de repositorios)
 - Esta capa se encarga de la persistencia de datos y la comunicación con otros servicios externos (como bases de datos o APIs externas). La **implementación de repositorios** está alineada con las interfaces definidas en el dominio.
 - **Inversión de dependencias** (uno de los principios de SOLID) se aplica aquí porque la capa de aplicación y dominio dependen de **abstracciones** y no de implementaciones concretas. Esto permite cambiar la infraestructura (como el tipo de base de datos) sin afectar el dominio o la lógica de negocio.
   
-![image](https://github.com/user-attachments/assets/837f737e-ba64-4827-a932-bda49e327f5e)
-
+![image](https://github.com/user-attachments/assets/45ff2488-7564-45f0-8a30-abacfe9f4494)
 
 
 # Conclusión
