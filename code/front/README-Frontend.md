@@ -2,6 +2,7 @@
 
 # ONE-MILLION-LUXURY-FRONT
 
+![inicio2](https://github.com/user-attachments/assets/4190edd2-4123-4012-87e6-dda0daf0c89a)
 
 # Proyecto React con Vite
 
@@ -82,6 +83,14 @@ La aplicación interactúa con dos endpoints principales de la API:
 
 *Endpoint:* http://localhost:5172/api/v1/getpropertybyfilters
 
-Parámetros (en el cuerpo de la solicitud):
+**Parámetros (en el cuerpo de la solicitud):**
 
+ ```json
+    {
+      "Name": "Casa de Ensueño",
+      "Address": "Medellín, Colombia",
+      "MinPrice": 200000,
+      "MaxPrice": 400000
+    }
+```
 
