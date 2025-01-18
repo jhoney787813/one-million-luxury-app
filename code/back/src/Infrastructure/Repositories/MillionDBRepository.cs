@@ -135,8 +135,8 @@ namespace Infrastructure.Repositories
 
             AddFilter("Name", "LIKE", !string.IsNullOrEmpty(filter.Name) ?$"%{filter.Name}%":null, ref query, ref isFirstFilter);
             AddFilter("Address", "ILIKE", !string.IsNullOrEmpty(filter.Address) ?$"%{filter.Address}%":null, ref query, ref isFirstFilter);
-            AddFilter("Price", ">=", filter.MinPrice.HasValue ? filter.MaxPrice : null, ref query, ref isFirstFilter);
-            AddFilter("Price", "<=", filter.MaxPrice.HasValue ? filter.MaxPrice:null, ref query, ref isFirstFilter);
+            AddFilter("Price", ">=", filter.MinPrice.HasValue && filter.MinPrice>0 ? filter.MinPrice : null, ref query, ref isFirstFilter);
+            AddFilter("Price", "<=", filter.MinPrice.HasValue && filter.MinPrice > 0 ? filter.MinPrice : null, ref query, ref isFirstFilter);
  
             query += " ORDER BY p.\"Created_at\" DESC";
 
