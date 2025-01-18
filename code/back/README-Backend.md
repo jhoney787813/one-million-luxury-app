@@ -65,6 +65,10 @@ En este contexto, la estructura del DTO (Data Transfer Object) se mantiene clara
 
 La **API BFF Backend Million App** es una solución diseñada para la consulta y gestión de propiedades y propietarios. Esta arquitectura sigue el patrón **Backend for Frontend (BFF)**, lo que permite crear aplicaciones escalables y optimizadas para su uso en plataformas tanto web como móviles.
 
+
+![image](https://github.com/user-attachments/assets/b8a4301c-68aa-4a19-ae8b-73ab8b15ec78)
+
+
 ### Versión:
 - **Versión**: 1.0
 
@@ -74,6 +78,11 @@ Esta API está diseñada para gestionar propiedades de usuarios y permite realiz
 ## Endpoints
 
 ### 1. **Consultar propiedades por filtros**
+
+![image](https://github.com/user-attachments/assets/df59038c-d786-4165-82a6-cd1c64338632)
+
+![image](https://github.com/user-attachments/assets/80954274-2b55-4067-8647-7374ed301935)
+
 - **Ruta**: `/api/v1/getpropertybyfilters`
 - **Método**: `POST`
 - **Resumen**: Permite consultar la información de las propiedades de los usuarios aplicando filtros como el nombre, la dirección y el rango de precio.
@@ -102,6 +111,11 @@ La solicitud debe contener un objeto JSON que cumple con el esquema **GetFiltere
 - **500 (Internal Server Error)**: Error interno en el servidor.
 
 ### 2. **Consultar el Top N propiedades más recientes**
+
+![image](https://github.com/user-attachments/assets/602d5304-0df0-4956-9d23-b15634a403fa)
+
+![image](https://github.com/user-attachments/assets/3d79dab2-caaf-4837-be20-59ab8ace3c04)
+
 - **Ruta**: `/api/v1/getpropertytop/{top}`
 - **Método**: `GET`
 - **Resumen**: Permite consultar el top N propiedades de los usuarios, ordenadas por la más reciente.
