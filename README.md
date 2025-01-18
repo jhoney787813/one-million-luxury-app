@@ -23,7 +23,7 @@ En esta sección encontrarás todos los scripts necesarios, tanto de DDL (Data D
 
 ### Código fuente BFF (API)
 
-En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  [-> Ver Código](https://github.com/jhoney787813/one-million-luxury-app/blob/main/Contenido-Desarrollo.md)
+En esta sección encontrarás la distribución tanto lógica como física de la solución de software, abarcando su arquitectura y la creación del proyecto en .NET. El desarrollo se ha realizado utilizando Visual Studio como entorno de desarrollo (IDE).  [-> Ver Código](https://github.com/jhoney787813/one-million-luxury-app/blob/main/code/back/README-Backend.md)
 
 ### Código fuente UI (Front)
 
