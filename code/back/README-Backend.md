@@ -325,6 +325,7 @@ Ejecuta la consulta SQL asíncrona utilizando Dapper y retorna los resultados ma
 La clase implementa la interfaz `IMillionDBRepository`, que declara los métodos `GetFilteredPropertiesAsync` y `GetTopPropertiesAsync` para obtener propiedades con filtros y el top de propiedades.
 
 ![image](https://github.com/user-attachments/assets/13f09335-60c2-4e47-9cd0-14f77ffb00dc)
+![image](https://github.com/user-attachments/assets/3eb08f31-4b91-4426-ae08-c0d2274bdc2a)
 ![image](https://github.com/user-attachments/assets/27190eb8-d38c-4b5e-8c2e-863e2dce0471)
 ![image](https://github.com/user-attachments/assets/99f21f04-c487-41c1-bef7-e21b36d32c1b)
 
