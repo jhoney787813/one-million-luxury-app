@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/13cd7a94-1aa9-4279-af9d-902d0f29ef5c)
 
 # Documentación de Diseño de Base de Datos
 
@@ -155,7 +156,9 @@ La tabla "*Property*" tiene una relación con la tabla "*Owner*" a través de la
 La tabla "*PropertyImage*" está relacionada con "*Image*" y *Property* mediante las claves foráneas "*IdPropertyImage*" e "*IdProperty*".
 La tabla "*PropertyTrace*" está relacionada con "*Property*" a través de la columna "*IdProperty*".
 
+### BD PROPUESTA CON BASE EN EL MODEO ORIGINAL ###
 
+![image](https://github.com/jhoney787813/one-million-luxury-app/blob/main/modeloBDnew.png)
 
 # Documentación de Datos de Ejemplo
 
