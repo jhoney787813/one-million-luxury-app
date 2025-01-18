@@ -203,7 +203,7 @@ Este enfoque asegura que se eviten errores innecesarios y que los datos ingresad
 
 ## Explicación de la Clase `GetFilteredPropertyQueryHandler`
 
-La clase `CreateUserCommandHandler` es responsable de manejar la consulta de propiedades y propietario a través del query  `GetFilteredPropertyQuery`. Su función principal es validar los datos antes de invocar la lógica de dominio para ejecutar la operación.
+La clase `GetFilteredPropertyQueryHandler` es responsable de manejar la consulta de propiedades y propietario a través del query  `GetFilteredPropertyQuery`. Su función principal es validar los datos antes de invocar la lógica de dominio para ejecutar la operación.
 ![image](https://github.com/user-attachments/assets/9f9448ef-cc19-49a8-b4a2-b16331ef9b01)
 ![image](https://github.com/user-attachments/assets/06890890-ad78-4c04-831e-c6d79967ac11)
 
