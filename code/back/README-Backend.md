@@ -59,4 +59,102 @@ En este contexto, la estructura del DTO (Data Transfer Object) se mantiene clara
 - **Image**: Solo se incluirá una imagen representativa de la propiedad.
 
 
+# Documentación de la API: BFF Backend Million App
+
+## Introducción
+
+La **API BFF Backend Million App** es una solución diseñada para la consulta y gestión de propiedades y propietarios. Esta arquitectura sigue el patrón **Backend for Frontend (BFF)**, lo que permite crear aplicaciones escalables y optimizadas para su uso en plataformas tanto web como móviles.
+
+### Versión:
+- **Versión**: 1.0
+
+### Descripción:
+Esta API está diseñada para gestionar propiedades de usuarios y permite realizar consultas filtradas por nombre, dirección y precio. Al utilizar el patrón BFF, la API facilita la interacción entre el frontend y el backend, permitiendo aplicaciones móviles y web que compartan lógica de negocio y optimización.
+
+## Endpoints
+
+### 1. **Consultar propiedades por filtros**
+- **Ruta**: `/api/v1/getpropertybyfilters`
+- **Método**: `POST`
+- **Resumen**: Permite consultar la información de las propiedades de los usuarios aplicando filtros como el nombre, la dirección y el rango de precio.
+
+#### Cuerpo de la solicitud:
+La solicitud debe contener un objeto JSON que cumple con el esquema **GetFilteredPropertyQuery**, que puede incluir los siguientes parámetros:
+- **name**: Nombre de la propiedad (opcional).
+- **address**: Dirección de la propiedad (opcional).
+- **minPrice**: Precio mínimo de la propiedad (opcional).
+- **maxPrice**: Precio máximo de la propiedad (opcional).
+
+#### Respuestas:
+- **200 (OK)**: Devuelve una lista de propiedades que cumplen con los filtros aplicados, siguiendo el esquema **GetFilteredPropertyQueryResponse**.
+  - **Campos del esquema de respuesta**:
+    - **idOwner**: ID del propietario de la propiedad.
+    - **ownerName**: Nombre del propietario.
+    - **propertyName**: Nombre de la propiedad.
+    - **propertyAddress**: Dirección de la propiedad.
+    - **price**: Precio de la propiedad.
+    - **imageUrl**: URL de la imagen representativa de la propiedad.
+
+- **400 (Bad Request)**: Se produce cuando la solicitud no cumple con los requisitos del servidor.
+- **401 (Unauthorized)**: Indica que la solicitud no está autorizada.
+- **406 (Not Acceptable)**: El servidor no puede procesar el tipo de contenido de la solicitud.
+- **409 (Conflict)**: Se produce cuando hay un conflicto con el estado actual del servidor.
+- **500 (Internal Server Error)**: Error interno en el servidor.
+
+### 2. **Consultar el Top N propiedades más recientes**
+- **Ruta**: `/api/v1/getpropertytop/{top}`
+- **Método**: `GET`
+- **Resumen**: Permite consultar el top N propiedades de los usuarios, ordenadas por la más reciente.
+
+#### Parámetros:
+- **top**: Número entero que indica cuántas propiedades se desean consultar (requerido).
+
+#### Respuestas:
+- **200 (OK)**: Devuelve las propiedades más recientes según el número indicado en el parámetro **top**, siguiendo el esquema **GetTopPropertyQueryResponse**.
+  - **Campos del esquema de respuesta**:
+    - **idOwner**: ID del propietario de la propiedad.
+    - **ownerName**: Nombre del propietario.
+    - **propertyName**: Nombre de la propiedad.
+    - **propertyAddress**: Dirección de la propiedad.
+    - **price**: Precio de la propiedad.
+    - **imageUrl**: URL de la imagen representativa de la propiedad.
+
+- **400 (Bad Request)**: Solicitud incorrecta.
+- **401 (Unauthorized)**: No autorizado.
+- **406 (Not Acceptable)**: No aceptable, tipo de contenido no soportado.
+- **409 (Conflict)**: Conflicto con la solicitud.
+- **500 (Internal Server Error)**: Error interno del servidor.
+
+## Esquemas de Respuesta
+
+### **GetFilteredPropertyQuery**:
+Este esquema se utiliza en la solicitud para filtrar propiedades por nombre, dirección y rango de precio. Los campos son:
+- **name**: Cadena opcional para el nombre de la propiedad.
+- **address**: Cadena opcional para la dirección de la propiedad.
+- **minPrice**: Número opcional que define el precio mínimo.
+- **maxPrice**: Número opcional que define el precio máximo.
+
+### **GetFilteredPropertyQueryResponse** y **GetTopPropertyQueryResponse**:
+Estos esquemas describen la estructura de la respuesta que contiene la información de las propiedades consultadas:
+- **idOwner**: ID del propietario.
+- **ownerName**: Nombre del propietario (opcional).
+- **propertyName**: Nombre de la propiedad (opcional).
+- **propertyAddress**: Dirección de la propiedad (opcional).
+- **price**: Precio de la propiedad (opcional).
+- **imageUrl**: URL de la imagen de la propiedad (opcional).
+
+### **ProblemDetails**:
+Este esquema describe los detalles de un problema o error ocurrido en la API, y contiene:
+- **type**: Tipo de error.
+- **title**: Título del error.
+- **status**: Código de estado HTTP.
+- **detail**: Descripción detallada del error.
+- **instance**: Instancia del error.
+
+## Conclusión
+
+La API **BFF Backend Million App** está diseñada para optimizar el acceso y gestión de propiedades, permitiendo consultas eficientes y adaptadas a las necesidades de las plataformas web y móviles. Con el uso de filtros y la posibilidad de consultar las propiedades más recientes, esta solución proporciona una manera efectiva de interactuar con los datos de propiedades y propietarios a través de un backend flexible y escalable.
+
+
+
 
