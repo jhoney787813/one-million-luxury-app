@@ -36,7 +36,7 @@ En esta sección encontrarás la distribución lógica y física de la solución
 
 Para cumplir con este requisito, hemos optado por utilizar [Supabase](https://supabase.com/), un servicio en la nube que ofrece una alternativa de código abierto a Firebase.
 
-Supabase proporciona funcionalidades clave para nuestro proyecto "API-backend-coink-app", tales como la implementación de una base de datos PostgreSQL, autenticación, generación automática de APIs, funciones Edge, suscripciones en tiempo real, almacenamiento y capacidades de incrustación vectorial.
+Supabase proporciona funcionalidades clave para nuestro proyecto "ONE-MILLION-LUXURY-APP", tales como la implementación de una base de datos PostgreSQL, autenticación, generación automática de APIs, funciones Edge, suscripciones en tiempo real, almacenamiento y capacidades de incrustación vectorial.
 
 
 [Jhon E -> GitHub Profile](https://github.com/jhoney787813/)
