@@ -4,6 +4,18 @@
         <name>BFF.Backend.Million.App</name>
     </assembly>
     <members>
+        <member name="M:API.Controllers.GetFilteredPropertyAppEndpoint.GetById(Application.OwnerProperty.GetFilteredProperty.GetFilteredPropertyQuery)">
+            <summary>
+            Permite consultar la información de las propiedades de los usuarios por filtros como el nombre, la direccion y el rango de precio
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.GetFilteredPropertyAppEndpoint.GetById(System.Int32)">
+            <summary>
+            Permite consultar el top{n} información de las propiedades de los usuarios ordenado por el mas reciente.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API.Controllers.GetFilteredPropertyEndpoint.GetById(Application.OwnerProperty.GetFilteredProperty.GetFilteredPropertyQuery)">
             <summary>
             Permite consultar la información de las propiedades de los usuarios por filtros como el nombre, la direccion y el rango de precio

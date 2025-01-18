@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-[Tags("Properties")]
+[Tags("WEB Properties")]
 [ApiController]
 public class GetFilteredPropertyEndpoint : ControllerBase
 {
