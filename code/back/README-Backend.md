@@ -13,7 +13,7 @@ Este proyecto se enfoca en la creación de una API REST utilizando tecnologías 
 
 ## Objetivos
 
-En este proyecto, se tiene como objetivo desarrollar una API en C# utilizando .NET 8 o 9 para obtener datos de propiedades desde una base de datos MongoDB. Esta API deberá contar con filtros específicos que permitan recuperar una lista de propiedades según los siguientes parámetros:
+Esta API deberá contar con filtros específicos que permitan recuperar una lista de propiedades según los siguientes parámetros:
 
 - **Nombre** de la propiedad.
 - **Dirección** de la propiedad.
