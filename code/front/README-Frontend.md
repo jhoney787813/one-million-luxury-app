@@ -93,4 +93,6 @@ La aplicación interactúa con dos endpoints principales de la API:
       "MaxPrice": 400000
     }
 ```
+![listado](https://github.com/user-attachments/assets/9920ef9a-9645-4484-ab0f-6c955d8fc28a)
+
 
